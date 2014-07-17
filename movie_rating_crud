@@ -1,0 +1,53 @@
+movies = {
+    MuppetMovie: 11,
+}
+puts "What do you want to do?"
+choice = gets.chomp
+
+case choice
+when "add"
+  puts "What is the movie title?"
+  title= gets.chomp.to_sym 
+  
+  if movies[title.to_sym] == nil
+    puts "What is the movie rating?"
+    rating = gets.chomp.to_i
+    movies[title] = rating
+    puts "(#{title} with a rating of #{rating} has been added)"
+    
+  else
+
+     puts "(#{title} has been added previously)"
+  end
+
+when "update"
+  puts "What is the movie title?"
+  title= gets.chomp
+  if movies[title.to_sym] == nil
+   puts "(#{title} is not in the system)"
+  else
+puts "What is the movie rating?"
+    rating = gets.chomp.to_i
+    movies[title.to_sym] = rating
+    puts "(#{title} has been updated with a rating of #{rating}.)"
+    
+  end
+when "display"
+  movies.each { |x, y| puts "#{x}: #{y}" }
+when "delete"
+   puts "What is the movie title?"
+  title= gets.chomp.to_sym 
+  
+  if movies[title.to_sym] == nil
+    puts "That movie doesn't exist in the database"
+  else
+    movies.delete(title)
+    puts "(#{title} has been deleted.)"
+    movies.each { |x,y| puts "#{x} is in the list."}
+  end
+else
+  puts "Please choose from the following:"
+  puts "Add, Update, Display, Delete"
+  puts "What do you want to do?"
+  choice = gets.chomp
+end
